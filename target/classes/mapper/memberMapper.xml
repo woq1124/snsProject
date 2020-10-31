@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.human1023.mapper.MemberDAO">
+	<insert id="insertOne" parameterType="com.human1023.vo.Member">
+		{ call insertMember(#{id }, #{pwd }, #{name }) }
+	</insert>
+	
+	<select id="selectOneById" parameterType="String" resultType="com.human1023.vo.Member">
+		select * from member where id = #{id }
+	</select>
+	
+	<select id="selectOneByIdPwd" parameterType="map" resultType="com.human1023.vo.Member">
+		select * from member where id = #{id } and pwd = #{pwd }
+	</select>
+	
+	<select id="selectPwdByNo" resultType="String">
+		select pwd from member where no=#{no} and pwd=#{pwd}
+	</select>
+	
+	<update id="updateNameByNo" parameterType="hashmap">
+		update member set name=#{name}, profilepic=#{profilepic} where no=#{no}
+	</update>
+
+	<update id="updatePwdByNo">
+		update member set pwd=#{pwd} where no=#{no}
+	</update>
+</mapper>

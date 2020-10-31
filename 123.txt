@@ -1,0 +1,22 @@
+{
+	속성 : 값,
+	속성 : 값,
+	속성 : 값
+}
+
+
+
+나 border-color: #546de5;
+맞팔 border-color: #f8a5c2;
+팔로우 border-color: #00cec9;
+딴 사람 border-color: #1e272e;
+
+data : {
+	id: $().val(),
+	pwd: $().val()
+},
+
+
+selectBothFollow
+selectFollowing
+selectFollowed

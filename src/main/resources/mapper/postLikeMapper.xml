@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.human1023.mapper.PostLikeDAO">
+
+	<insert id="callLikeWork" parameterType="HashMap" statementType="CALLABLE">
+		{ call likeWork(
+			#{postNo},
+			#{memberNo},
+			#{likeCnt, mode=OUT, jdbcType=INTEGER, javaType=int }
+			)
+		}
+	</insert>
+	
+	<select id="selectCntByNo" parameterType="Integer" resultType="Integer">
+		select count(*) from postlike where postno = #{postNo}
+	</select>
+	
+	<select id="selectOneByNo" resultType="Integer">
+		SELECT NVL(MIN(1), 0) AS chk FROM dual WHERE EXISTS (SELECT 1 FROM postlike where postno = #{postNo} and memberno = #{memberNo})
+	</select>
+	
+</mapper>

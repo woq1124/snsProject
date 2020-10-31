@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.human1023.mapper.FollowDAO">
+	<insert id="insertOne" parameterType="Integer" statementType="CALLABLE">
+		{ call insertfollow(#{myNo}, #{yourNo}) }
+	</insert>
+
+	<select id="selectBothFollow" parameterType="Integer" resultType="com.human1023.vo.Follow">
+		with
+		F as (select * from follow where following=#{myNo}),
+		M as (select no, id, name, regdate, profilepic from member)
+		select M.no, M.id, M.name, M.regdate, M.profilepic, F.followType from M
+		join F on F.followed=M.no
+		where followtype=1
+	</select>
+	
+	<select id="selectFollowing" parameterType="Integer" resultType="com.human1023.vo.Follow">
+		with
+		F as (select * from follow where following = #{myNo}),
+		M as (select no, id, name, regdate, profilepic from member)
+		select M.no, M.id, M.name, M.regdate, M.profilepic, F.followType from M
+		join F on F.followed = M.no
+		where followtype = 2
+	</select>
+	
+	<select id="selectFollowed" parameterType="Integer" resultType="com.human1023.vo.Follow">
+		with
+		F as (select * from follow where followed = #{myNo}),
+		M as (select no, id, name, regdate, profilepic from member)
+		select M.no, M.id, M.name, M.regdate, M.profilepic, F.followType from M
+		join F on F.following = M.no
+		where followtype = 2
+	</select>
+	
+	<select id="selectSearchKeyword" parameterType="HashMap" resultType="com.human1023.vo.Follow">
+		with
+		F as (select * from follow where following=#{myNo}),
+		M as (select no, id, name, regdate, profilepic from member where id=#{keyword} or name like '%'||#{keyword}||'%')
+		select M.no, M.id, M.name, M.regdate, M.profilepic, nvl(F.followType, 3) followType from M
+		left join F on M.no=F.followed
+		where F.followtype is null
+	</select>
+	
+	<insert id="deleteOne" parameterType="Integer" statementType="CALLABLE">
+		{ call deletefollow(#{myNo}, #{yourNo}) }
+	</insert>
+	
+</mapper>
