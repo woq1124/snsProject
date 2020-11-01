@@ -18,6 +18,7 @@ header {
 	text-align: center;
 }
 #logo {
+	height: 50px;
 	float: left;
 }
 #search {
@@ -128,10 +129,6 @@ $(document).ready(function() {
 		<a href="<%=request.getContextPath()%>">
 			<img id="logo"src="resources/images/header/logo.png">
 		</a>
-		<form action="search" method="get" id="search" autocomplete="off">
-			<input type="text" id="searchbar" name="search" placeholder="Search"
-				onfocus="this.placeholder = ''" onblur="this.placeholder='Search'">
-		</form>
 		<c:choose>
 		<c:when test="${login!=null}">
 			<button id="acount" onclick="acount();"><span id="acountspan">${login.name }</span>

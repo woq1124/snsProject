@@ -8,9 +8,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.human1023.mapper.MemberDAO;
 import com.human1023.mapper.PostDAO;
 import com.human1023.mapper.PostLikeDAO;
 import com.human1023.mapper.PostReplyDAO;
+import com.human1023.vo.Member;
 import com.human1023.vo.Post;
 import com.human1023.vo.PostReply;
 
@@ -19,6 +21,7 @@ public class PostServiceImpl implements PostService {
 	
 	@Autowired
 	SqlSession sqlSession;
+	MemberDAO mDAO;
 	PostDAO pDAO;
 	PostLikeDAO plDAO;
 	PostReplyDAO prDAO;
@@ -101,4 +104,13 @@ public class PostServiceImpl implements PostService {
 	public void delPost(int postNo) {
 		pDAO.deleteOne(postNo);
 	}
+
+	@Override
+	public Member otherMember(int memberNo) {
+		mDAO = sqlSession.getMapper(MemberDAO.class);
+		Member other = mDAO.selectOneByNo(memberNo);
+		return other;
+	}
+
+
 }

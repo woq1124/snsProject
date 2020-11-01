@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.human1023.vo.Member;
 import com.human1023.vo.Post;
 import com.human1023.vo.PostReply;
 
@@ -11,6 +12,7 @@ public interface PostService {
 
 	public void newPost(Post post);
 	public ArrayList<Post> myList(int no, int page);
+	public Member otherMember(int memberNo);
 	public Post getPost(int postNo);
 	public void modPost(Post post);
 	public void delPost(int postNo);

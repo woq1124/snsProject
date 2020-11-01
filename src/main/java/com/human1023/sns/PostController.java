@@ -32,6 +32,18 @@ public class PostController {
 		Member login = (Member) session.getAttribute("login");
 		ArrayList<Post> initailList = postService.myList(login.getNo(), 0);
 		model.addAttribute("initialList", initailList);
+		model.addAttribute("nowMember", login);
+		return "mysns";
+	}
+	@RequestMapping(value = "othersns")
+	public String otherSns(HttpSession session, Model model, @RequestParam("memberno") int memberNo) {
+		Member login = (Member) session.getAttribute("login");
+		if(memberNo == login.getNo()) {
+			return "redirect:/mysns";
+		}
+		ArrayList<Post> initailList = postService.myList(memberNo, 0);
+		model.addAttribute("initialList", initailList);
+		model.addAttribute("nowMember", postService.otherMember(memberNo));
 		return "mysns";
 	}
 	

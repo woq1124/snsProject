@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="selectAllByPostNo" parameterType="Integer" resultType="com.human1023.vo.PostReply">
-		select * from postReplyView where postNo = #{postNo} order by regDate desc
+		select * from postReplyView where postNo = #{postNo} order by replyNo asc
 	</select>
 	
 	<delete id="deleteOne" parameterType="Integer">

@@ -8,6 +8,7 @@ import com.human1023.vo.Member;
 
 public interface MemberDAO {
 	public int insertOne(Member member);
+	public Member selectOneByNo(int no);
 	public Member selectOneById(String id);
 	public Member selectOneByIdPwd(@Param("id") String id, @Param("pwd") String pwd);
 	public int updateNameByNo(HashMap<String, Object> param);

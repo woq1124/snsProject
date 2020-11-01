@@ -12,6 +12,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from member where id = #{id }
 	</select>
 	
+	<select id="selectOneByNo" parameterType="Integer" resultType="com.human1023.vo.Member">
+		select * from member where no = #{no }
+	</select>
+	
 	<select id="selectOneByIdPwd" parameterType="map" resultType="com.human1023.vo.Member">
 		select * from member where id = #{id } and pwd = #{pwd }
 	</select>

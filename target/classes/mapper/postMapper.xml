@@ -18,6 +18,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where rn between #{startNo} and #{endNo}
 	</select>
 	
+	<select id="selectOtherList" parameterType="hashmap" resultType="com.human1023.vo.Post">
+		
+	</select>
+	
 	<select id="selectOne" parameterType="Integer" resultType="com.human1023.vo.Post">
 		select * from postview where no = #{postNo}
 	</select>

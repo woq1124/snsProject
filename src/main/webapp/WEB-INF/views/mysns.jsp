@@ -452,7 +452,7 @@ function dataToHtml(data){
 	html += '<article class="post-border'+data.openType+'">'; 
 	html += '<div class=post-head data-postno="'+ data.no +'">'; 
 	html += '<div class="writer">';
-	html += '<a href="#">';
+	html += '<a href="othersns?memberno=' + data.memberNo + '">';
 	html += '<img class = "profilepic profile-border'+data.followType+'" src="resources/upload/profile/' + data.profilepic + '">';
 	html += '<span class="postname">' + data.name+ '</span>';
 	html += '</a>';
@@ -467,7 +467,7 @@ function dataToHtml(data){
 	html += '</div>';
 	html += '<div class="post-body">';
 	html += '<div class="contents">';
-	html += '<pre>' + data.content +'</pre>';
+	html += '<pre style="white-space: pre-wrap;">' + data.content +'</pre>';
 	html += '</div>';
 	html += '<div class="like">';
 	html += '<span class="like-cnt"></span>';
@@ -541,7 +541,7 @@ function appendReply(reply) {
 	var html = "";
 	html += '<div class="reply-unit-wrapper">';
 	html += '<div class="reply-writer" data-memberno="'+ reply.memberNo +'">'+ reply.memberName +'</div>';
-	html += '<div class="reply-comment"><pre>' + reply.comments + '</pre></div>';
+	html += '<div class="reply-comment"><pre style="text-overflow: clip;">' + reply.comments + '</pre></div>';
 	html += '<div class="reply-date">';
 	if(reply.memberNo == loginNo){
 		html += '<button class="delete-reply" data-replyno="' + reply.replyNo +'">';
@@ -552,7 +552,7 @@ function appendReply(reply) {
 	html += '&nbsp;' + reply.regDate.substring(8, 10)+':'+reply.regDate.substring(10, 12)+'</span>';
 	html += '</div>';
 	html += '</div>';
-	return html;	
+	return html;
 }
 
 $(document).on("click", ".like-btn", function() {
@@ -752,7 +752,7 @@ $(document).on("click", ".del-btn", function() {
 				<article class="post-border${post.openType}">
 					<div class="post-head" data-postno="${post.no }">
 						<div class="writer">
-							<a href="#">
+							<a href="othersns?memberno=${post.memberNo }">
 								<img class="profilepic profile-border${post.followType }" src="resources/upload/profile/${post.profilepic}">
 								<span class="postname">${post.name }</span>
 							</a>
@@ -767,7 +767,7 @@ $(document).on("click", ".del-btn", function() {
 					</div>
 					<div class="post-body">
 						<div class="contents">
-							<pre>${post.content }</pre>
+							<pre style="white-space: pre-wrap;">${post.content }</pre>
 						</div>
 						<div class="like">
 							<span class="like-cnt">10</span>
@@ -802,8 +802,9 @@ $(document).on("click", ".del-btn", function() {
 
 			<aside>
 				<div id="profile">
-					<img id="asideprofilepic" src="resources/upload/profile/${login.profilepic}">
-					<span id="profilespan">${login.name }</span>
+					<img id="asideprofilepic" src="resources/upload/profile/${nowMember.profilepic}">
+					<span id="profilespan">${nowMember.name }</span>
+					<script type="text/javascript"></script>
 				</div>
 				<ul class="menu">
 					<li>Post</li>
