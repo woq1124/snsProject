@@ -35,6 +35,7 @@ public class PostController {
 		model.addAttribute("nowMember", login);
 		return "mysns";
 	}
+	
 	@RequestMapping(value = "othersns")
 	public String otherSns(HttpSession session, Model model, @RequestParam("memberno") int memberNo) {
 		Member login = (Member) session.getAttribute("login");

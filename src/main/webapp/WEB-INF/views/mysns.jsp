@@ -556,7 +556,6 @@ function appendReply(reply) {
 }
 
 $(document).on("click", ".like-btn", function() {
-	var error = 1;
 	var postNo = $(this).parent().parent().prev().data("postno");
 	var likeBtn = $(this);
 	$.ajax({
@@ -565,19 +564,18 @@ $(document).on("click", ".like-btn", function() {
 		dataType : "text",
 		success: function(result) {
 			likeBtn.prev().text(result);
+			likeBtn.toggleClass("in-like");
+			likeBtn.prev().toggleClass("cnt-in-like");
+			likeBtn.val(likeBtn.val()=="좋아요"?"좋아요 취소":"좋아요");
 		},
 		error: function() {
 			alert("error");
 			error = 0;
 		}
 	});
-	if(error){
-		$(this).toggleClass("in-like");
-		$(this).prev().toggleClass("cnt-in-like");
-		$(this).val($(this).val()=="좋아요"?"좋아요 취소":"좋아요");
-	}
 	return false;
 })
+
 $(document).on("click", ".reply-display", function() {
 	$(this).parent().next().slideToggle({
 	       direction: "down"
